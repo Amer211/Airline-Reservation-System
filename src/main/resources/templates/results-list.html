@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>results</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+<div class="container">
+    <h3>Results</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Flight ID</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th th:if="${flight!=null}">Book</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="flight: ${flights}">
+            <td th:text="${flight.flightNumber}"></td>
+            <td th:text="${flight.departure}"></td>
+            <td th:text="${flight.arrival}"></td>
+            <td th:text="${flight.departureDate}"></td>
+            <td th:text="${flight.departureTime}"></td>
+            <td th:if="${flight}">
+                <a th:href="@{/bookFlight(flightNumber=${flight.flightNumber})}"
+                   class="btn btn-primary">
+                    Book
+                </a>
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <p>Only seats available on this flight</p>
+
+
+</div>
+
+
+
+
+</body>
+</html>

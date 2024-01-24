@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Reservations</title>
+</head>
+<body>
+<h1>My Reservations</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+
+        <!-- Add more headers as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.reservationId}">Reservation ID</td>
+
+        <!-- Add more cells for other reservation details -->
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/search}" class="btn btn-secondary">Book a Flight</a>
+<a th:href="@{/my-reservations}" class="btn btn-secondary">My Reservations</a>
+
+</body>
+</html>
+

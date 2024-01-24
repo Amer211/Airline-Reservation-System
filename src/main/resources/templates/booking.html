@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flight Booking</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h3>Book Flight</h3>
+    <form th:action="@{/submitBooking}" th:object="${user}"
+          method="post">
+        <input type="hidden" name="flightNumber" th:value="${flight.flightNumber}">
+
+        <!-- Passenger information fields -->
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" th:value="${user.firstName}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" th:value="${user.lastName}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"  required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" id="email" name="email" class="form-control" th:value="${user.email}" required >
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" th:value="${user.phoneNumber}" required >
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" id="address" name="address" class="form-control" th:value="${user.address}" required >
+        </div>
+
+        <!-- Seat class selection -->
+        <div class="mb-3">
+            <label for="seatClass" class="form-label">Seat Class</label>
+            <select id="seatClass" name="seatClass" class="form-select" required>
+                <option value="ECONOMY">Economy</option>
+                <option value="BUSINESS">Business</option>
+                <option value="FIRST_CLASS">First Class</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+    </form>
+</div>
+</body>
+</html>

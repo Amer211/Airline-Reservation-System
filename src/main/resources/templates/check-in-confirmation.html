@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in Confirmation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Check-in Confirmation</h1>
+
+    <!-- Display a success message -->
+    <div class="alert alert-success">
+        <p>Your check-in was successful.</p>
+        <!-- You can add more details or customization here -->
+    </div>
+    <div th:if="${user != null and reservation != null}">
+        <h2>User Information</h2>
+    <p><strong>First name:</strong> <span th:text="${user.firstName}"></span></p>
+    <p><strong>Last name:</strong> <span th:text="${user.lastName}"></span></p>
+    <p><strong>Reservation ID:</strong> <span th:text="${reservation.reservationId}"></span></p>
+    <p><strong>Flight Number:</strong> <span th:text="${reservation.flight.flightNumber}"></span></p>
+    <p><strong>From :</strong> <span th:text="${reservation.flight.departure}"></span></p>
+    <p><strong>to   :</strong> <span th:text="${reservation.flight.arrival}"></span></p>
+    <p><strong>seat class:</strong> <span th:text="${reservation.seatClass.description}"></span></p>
+    <p><strong>seat:</strong> <span th:text="${reservation.seat.seatNumber}"></span></p>
+
+
+    </div>
+    <!-- Optionally, you can provide a link to go back to the home page -->
+    <a th:href="@{/Home}" class="btn btn-primary">Home</a>
+</div>
+</body>
+</html>

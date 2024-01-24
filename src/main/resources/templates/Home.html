@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Airline Reservation System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to the Airline Reservation System</h2>
+
+    <div sec:authorize="isAuthenticated()">
+        <p>Hello, <span th:text="${#authentication.name}"></span>!</p>
+        <a th:href="@{/searchReservation/myReservation}" class="btn btn-primary">My Reservations</a>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+
+    <div>
+        <a th:href="@{/searchReservation}" class="btn btn-primary">Manage Reservations</a>
+        <a th:href="@{/search}" class="btn btn-primary">
+            Book flight
+        </a>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <p>You need to log in to view your reservations.</p>
+        <a th:href="@{/login}" class="btn btn-secondary">Login/Register</a>
+    </div>
+
+    <hr>
+
+    <div sec:authorize="isAuthenticated and hasAnyRole('ADMIN', 'MANAGER')">
+        <a th:href="@{AddFlight}" class="btn btn-primary">Add Flight</a>
+        <a th:href="@{AddDestination}" class="btn btn-primary">Add Destination</a>
+        <a th:href="@{/showFlightsList}" class="btn btn-primary">All Flights</a>
+        <a th:href="@{/searchFlightById}" class="btn btn-primary">Find Flight by ID</a>
+        <a th:href="@{/showDestinationsList}" class="btn btn-primary">Destinations</a>
+        <a th:href="@{/manager/add}" class="btn btn-primary">Add manager</a>
+        <a th:href="@{/admin/users}" class="btn btn-primary">All users</a>
+        <a th:href="@{/admin/addPlane}" class="btn btn-primary">Add plane</a>
+
+        <p class="mt-4">ADMIN ONLY</p>
+    </div>
+
+
+</div>
+</body>
+</html>

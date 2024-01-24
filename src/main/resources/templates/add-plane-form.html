@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new flight</title>
+    <!-- Link to Bootstrap CSS file -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<h1>Add New Plane</h1>
+<form th:action="@{/admin/savePlane}"
+      th:object="${plane}" method="post">
+    <label for="make">Plane Make:</label>
+    <select id="make" name="make" required th:field="*{make}">
+        <option th:value="BOEING" th:text="BOEING"></option>
+        <option th:value="AIRBUS" th:text="AIRBUS"></option>
+    </select><br>
+
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" th:field="*{model}" required><br>
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" id="capacity" name="planeCapacity" th:field="*{planeCapacity}"><br><br>
+
+
+    <label for="planeSeatslayout">Plane Seats Layout:</label>
+    <select id="planeSeatslayout" name="planeSeatslayout" th:field="*{planeSeatslayout}">
+        <option th:value="3-3" th:text="3-3"></option>
+        <option th:value="3-2-3" th:text="3-2-3"></option>
+        <option th:value="3-3-3" th:text="3-3-3"></option>
+    </select><br>
+
+
+    <button type="submit">Save Plane</button>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
